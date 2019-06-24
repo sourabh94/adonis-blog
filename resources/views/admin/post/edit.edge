@@ -1,0 +1,61 @@
+@layout('layouts.base')
+
+@section('extracss')
+<style>
+body{
+  padding: 5%;
+}
+.adminContent{
+  margin-top: 5%;
+}
+</style>
+
+{{ script('ckeditor/ckeditor.js') }}
+
+@endsection
+
+@section('title')
+Admin - Blog
+@endsection
+
+@section('content')
+
+@include('partials.adminNav')
+
+  <div class="adminContent">
+    
+    <a href="/admin/home">back</a>
+    <br>
+
+    @if(flashMessage('message'))
+      <span>{{ flashMessage('message') }}</span>
+    @endif
+    
+    <br>
+
+    <form action="{{ route('PostController.update', { id: post.id }) }}" method="POST">
+      {{ csrfField() }}
+
+      <label for="title" class="sr-only" >Title</label>
+        <input type="text" name="title" id="inputEmail" class="form-control"  value="{{ post.title }}" placeholder="Title" style="margin-bottom:20px;">
+        @if(hasErrorFor('title'))
+            <span style="color:red, font-size:20px"> 
+                {{ getErrorFor('title') }}
+            </span>
+        @endif
+      <textarea name="body" id="editor1" rows="10" cols="80" >
+        {{post.body}}
+      </textarea>
+      <script>
+          // Replace the <textarea id="editor1"> with a CKEditor
+          // instance, using default configuration.
+          CKEDITOR.replace( 'editor1' , {
+              "extraPlugins" : 'imagebrowser',
+		          "imageBrowser_listUrl" : "/files"
+          });
+      </script>
+
+      <button type="submit" style="margin-top:20px;">Upload Article</button>
+    </form>
+  </div>
+@endsection

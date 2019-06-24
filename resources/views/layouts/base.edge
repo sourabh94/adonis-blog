@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Bootstrap core CSS -->
+  {{ style('vendor/bootstrap/css/bootstrap.min') }}
+
+   @!section('extracss')
+
+  <title>
+    @!section('title')
+  </title>
+
+</head>
+<body>  
+    
+    @!section('content')
+    
+<!-- Bootstrap core JavaScript -->
+{{ script('vendor/jquery/jquery.min.js') }}
+{{ script('vendor/bootstrap/js/bootstrap.bundle.min.js') }}   
+
+@!section('extrascript')
+
+</body>
+</html>

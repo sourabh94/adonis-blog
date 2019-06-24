@@ -1,0 +1,28 @@
+@layout('layouts.main')
+
+@section('title')
+Blog - 1
+@endsection
+
+
+@section('content')
+
+<div class="post-preview">
+    <a href=''>
+      <h2 class="post-title">
+        {{post.title}}
+      </h2>
+      <h3 class="post-subtitle">
+        {{{post.body}}}
+      </h3>
+    </a>
+    <p class="post-meta">Posted by
+      <a href="#">Admin</a>
+    on {{post.created_at}}</p>
+</div>
+<script>
+  function changeDate(val){
+    console.log(val);
+  }
+</script>
+@endsection
